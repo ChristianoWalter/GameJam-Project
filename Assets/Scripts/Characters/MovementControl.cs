@@ -14,7 +14,7 @@ public class MovementControl : MonoBehaviour
     [SerializeField] protected Animator anim;
     [SerializeField] protected Rigidbody2D rb;
 
-    protected void Update()
+    protected virtual void Update()
     {
         if (canMove) rb.velocity = moveDirection * moveSpeed;
         

@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MovementControl
 {
-    public static PlayerController instance;
+    public static PlayerController instance;    
 
     private void Awake()
     {

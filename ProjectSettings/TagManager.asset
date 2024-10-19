@@ -11,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Follow Npc
   - 
   - 
   - 
@@ -40,4 +40,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2980631339
+    locked: 0
+  - name: Characters
+    uniqueID: 1950444025
+    locked: 0
+  - name: Frontground
+    uniqueID: 3037835825
+    locked: 0
+  - name: UI
+    uniqueID: 98530791
     locked: 0
