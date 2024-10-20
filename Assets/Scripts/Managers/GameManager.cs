@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject[] backgrounds;
     [SerializeField] GameObject player;
     int currentSpawnPoint;
+    [HideInInspector] public bool gameStarted;
+    [HideInInspector] public bool transitioning;
 
     [Header("Transition Elements")]
     [SerializeField] Animator transitionAnim;
@@ -23,7 +26,17 @@ public class GameManager : MonoBehaviour
             player = FindObjectOfType<PlayerController>().gameObject;
         }
         currentSpawnPoint = 0;
-        
+    }
+
+    private void Update()
+    {
+        if (!gameStarted)
+        {
+            if (Input.anyKeyDown)
+            {
+                gameStarted = true;
+            }
+        }
     }
 
     IEnumerator LevelTransition()
