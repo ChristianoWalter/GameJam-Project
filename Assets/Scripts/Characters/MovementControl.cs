@@ -5,7 +5,8 @@ using UnityEngine;
 public class MovementControl : MonoBehaviour
 {
     [Header("Stats")]
-    [SerializeField] public bool canMove;
+    public bool canMove;
+    [SerializeField] protected bool isMoving;
     [SerializeField] protected float moveSpeed;
     [SerializeField] protected float rotationSpeed;
     protected Vector2 moveDirection;
@@ -14,9 +15,18 @@ public class MovementControl : MonoBehaviour
     [SerializeField] protected Animator anim;
     [SerializeField] protected Rigidbody2D rb;
 
+    protected virtual void Start()
+    {
+        canMove = true;
+        isMoving = false;
+    }
+
     protected virtual void Update()
     {
-        if (canMove) rb.velocity = moveDirection * moveSpeed;
+        if (canMove)
+        {
+            rb.velocity = moveDirection * moveSpeed;
+        }
         
         if (moveDirection != Vector2.zero)
         {
@@ -28,11 +38,20 @@ public class MovementControl : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, 0), rotationSpeed);
         }
 
-        if (anim != null) anim.SetBool("IsMoving", Mathf.Abs(rb.velocity.x) > 0.01f || Mathf.Abs(rb.velocity.y) > 0.01f);
+        isMoving = Mathf.Abs(rb.velocity.x) > 0.01f || Mathf.Abs(rb.velocity.y) > 0.01f;
+
+        if (anim != null)
+        {
+            anim.SetBool("IsMoving", isMoving);
+        }
     }
 
     protected void Movement(float horizontalInput, float verticalInput)
     {
-        if (canMove) rb.velocity = new Vector2(horizontalInput * moveSpeed, verticalInput * moveSpeed);        
+        if (canMove)
+        {
+            rb.velocity = new Vector2(horizontalInput * moveSpeed, verticalInput * moveSpeed);
+        }
     }
+    
 }
