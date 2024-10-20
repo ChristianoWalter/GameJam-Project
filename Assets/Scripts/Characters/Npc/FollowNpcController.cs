@@ -9,6 +9,7 @@ public class FollowNpcController : MonoBehaviour
     [SerializeField] float fixedSpeed;
     [SerializeField] float rotationSpeed;
     bool canMove;
+    PlayerController playerRef;
 
     [Header("Movement variables")]
     Transform destiny;
@@ -18,12 +19,13 @@ public class FollowNpcController : MonoBehaviour
     private void Awake()
     {
         //destiny = PlayerController.instance.transform;
+        playerRef = FindObjectOfType<PlayerController>();
     }
 
     private void Start()
     {
-        PlayerController.instance.AddSpirits(gameObject);
-        destiny = PlayerController.instance.transform;
+        playerRef.AddSpirits(gameObject);
+        destiny = playerRef.transform;
         canMove = true;
     }
 

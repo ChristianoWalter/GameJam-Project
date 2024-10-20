@@ -158,14 +158,14 @@ MonoBehaviour:
       Data2: 1194483116
       Data3: 1109627326
       Data4: 1181861071
-    Path: event:/sfx_personagem_nadando
+    Path: event:/SFX/sfx_char_nadando
   DamageEvent:
     Guid:
       Data1: 64219186
       Data2: 1278921358
       Data3: 1376853393
       Data4: 117926797
-    Path: event:/sfx_personagem_capturando
+    Path: event:/SFX/sfx_char_capturando
   HealEvent:
     Guid:
       Data1: 753778087

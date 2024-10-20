@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BaseNpcController : MonoBehaviour
 {
@@ -24,13 +25,14 @@ public class BaseNpcController : MonoBehaviour
     bool isTriggering;
 
     [Header("External components")]
+    [SerializeField] Image catchInterface;
     [SerializeField] GameObject mainGroup;
     [SerializeField] GameObject followSpirit;
     [SerializeField] Animator anim;
 
     private void Awake()
     {
-
+        catchInterface.fillAmount = 0;
     }
 
     // Start is called before the first frame update
@@ -47,8 +49,11 @@ public class BaseNpcController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentTime > 0 && !isTriggering) currentTime = Mathf.Max(currentTime - Time.deltaTime, 0);
-        
+        if (currentTime > 0 && !isTriggering)
+        {
+            currentTime = Mathf.Max(currentTime - Time.deltaTime, 0);
+            catchInterface.fillAmount = currentTime / timeToBeingCaught;
+        }
         if (walkPoints != null && destiny != null) 
         {
             if (Vector2.Distance(destiny.position, transform.position) <= 0.3f && switchDestiny)
@@ -97,6 +102,7 @@ public class BaseNpcController : MonoBehaviour
             if (currentTime < timeToBeingCaught)
             {
                 currentTime = Mathf.Min(currentTime + Time.deltaTime, timeToBeingCaught);
+                catchInterface.fillAmount = currentTime / timeToBeingCaught;
             }
             else
             {
@@ -116,26 +122,6 @@ public class BaseNpcController : MonoBehaviour
         {
             isTriggering = false;
         }
-    }
-
-    IEnumerator DecrementCatch()
-    {
-        for (float time = 0; time < timeToBeingCaught; time += .01f)
-        {
-
-            yield return new WaitForSeconds(.01f);
-        }
-    }
-
-    IEnumerator CatchSpirit()
-    {
-        for (float time = 0; time < timeToBeingCaught; time += .01f)
-        {
-
-            yield return new WaitForSeconds(.01f);
-        }
-        Instantiate(followSpirit, transform.position, Quaternion.identity);
-        Destroy(mainGroup);
     }
     #endregion
 }

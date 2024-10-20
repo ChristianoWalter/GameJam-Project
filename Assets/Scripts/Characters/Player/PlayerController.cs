@@ -19,6 +19,7 @@ public class PlayerController : MovementControl
     private void Awake()
     {
         instance = this;
+        canInput = true;
     }
 
     protected override void Start()
