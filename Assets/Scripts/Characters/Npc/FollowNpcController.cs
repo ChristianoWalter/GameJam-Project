@@ -1,13 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class FollowNpcController : MonoBehaviour
 {
     [Header("Basic Stats")]
-    [SerializeField] float moveSpeed;
+    float moveSpeed;
     [SerializeField] float fixedSpeed;
     [SerializeField] float rotationSpeed;
     bool canMove;
@@ -15,12 +13,11 @@ public class FollowNpcController : MonoBehaviour
     [Header("Movement variables")]
     Transform destiny;
     [SerializeField] float distanceToPlayer;
-    bool incrementingSpeed;
     bool decrementingSpeed;
 
     private void Awake()
     {
-        
+        //destiny = PlayerController.instance.transform;
     }
 
     private void Start()
@@ -43,21 +40,15 @@ public class FollowNpcController : MonoBehaviour
                 }
                 moveSpeed = Mathf.Max(moveSpeed - Time.deltaTime * 2, 0);
             }
-            else
-            {
-                //canMove = false;
-            }
         }
         else
         {
-            //canMove = true; 
             decrementingSpeed = false;
             if (moveSpeed < fixedSpeed)
             {
                 moveSpeed = Mathf.Min(moveSpeed + Time.deltaTime * 4, fixedSpeed);
             }
         }
-        //Debug.Log(moveSpeed);
 
         if (canMove)
         {

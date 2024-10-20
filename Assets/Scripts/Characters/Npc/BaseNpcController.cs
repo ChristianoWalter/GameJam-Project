@@ -26,6 +26,7 @@ public class BaseNpcController : MonoBehaviour
     [Header("External components")]
     [SerializeField] GameObject mainGroup;
     [SerializeField] GameObject followSpirit;
+    [SerializeField] Animator anim;
 
     private void Awake()
     {
@@ -66,6 +67,12 @@ public class BaseNpcController : MonoBehaviour
             direction.Normalize();
             float rotationAngle = Mathf.Atan2(-direction.x, direction.y) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, rotationAngle), rotationSpeed);
+            if ((direction.x > 0 && transform.localScale.x < 0) || (direction.x < 0 && transform.localScale.x > 0))
+            {
+                Vector2 _localScale = transform.localScale;
+                _localScale.x *= -1f;
+                transform.localScale = _localScale;
+            }
         }
     }
 

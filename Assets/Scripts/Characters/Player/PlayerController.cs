@@ -9,6 +9,7 @@ public class PlayerController : MovementControl
 
     [Header("Player elements")]
     public List<GameObject> spiritsList = new List<GameObject>();
+    [HideInInspector] public bool canInput;
 
     private void Awake()
     {
@@ -27,12 +28,21 @@ public class PlayerController : MovementControl
     public void AddSpirits(GameObject _spirits)
     {
         spiritsList.Add(_spirits);
+        InterfaceController.instance.SetSpiritsCaught(spiritsList.Count);
     }
 
     #region Input Methods
     public void MovementInput(InputAction.CallbackContext value)
     {
-        moveDirection = value.ReadValue<Vector2>();
+        if (canInput) moveDirection = value.ReadValue<Vector2>();
+    }
+
+    public void PauseInput(InputAction.CallbackContext value)
+    {
+        if (value.performed)
+        {
+            InterfaceController.instance.PauseUnpause();
+        }
     }
     #endregion
 }

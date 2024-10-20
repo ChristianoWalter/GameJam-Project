@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MenusController : MonoBehaviour
+public class InterfaceController : MonoBehaviour
 {
-    public static MenusController instance;
+    public static InterfaceController instance;
 
     public enum Screens
     {
@@ -20,6 +20,9 @@ public class MenusController : MonoBehaviour
     bool isPaused;
     [HideInInspector] public bool isInGame;
 
+    [Header("UI Variables")]
+    public GameObject[] spiritsCaught;
+
     [Header("Screens Variables")]
     [SerializeField] GameObject menuScreen;
     [SerializeField] GameObject gameScreen;
@@ -28,8 +31,6 @@ public class MenusController : MonoBehaviour
     [SerializeField] GameObject creditsScreen;
 
     [Header("Screens Main Buttons")]
-    [SerializeField] GameObject menuBtn;
-    [SerializeField] GameObject gameBtn;
     [SerializeField] GameObject pauseBtn;
     [SerializeField] GameObject configBtn;
     [SerializeField] GameObject creditsBtn;
@@ -42,6 +43,7 @@ public class MenusController : MonoBehaviour
         instance = this;
     }
 
+    #region Screens Management
     public void SwitchScreen(int screenIndex)
     {
         lastScreen = currentScreen;
@@ -51,28 +53,30 @@ public class MenusController : MonoBehaviour
         pauseScreen.SetActive(false);
         configScreen.SetActive(false);
         creditsScreen.SetActive(false);
+        Cursor.visible = false;
         EventSystem.current.SetSelectedGameObject(null);
 
         switch (currentScreen)
         {
             case Screens.menuScreen:
                 menuScreen.SetActive(true);
-                EventSystem.current.SetSelectedGameObject(menuBtn);
                 break;
             case Screens.gameScreen:
                 gameScreen.SetActive(true);
-                EventSystem.current.SetSelectedGameObject(configBtn);
                 break;
             case Screens.pauseScreen: 
                 pauseScreen.SetActive(true);
+                Cursor.visible = true;
                 EventSystem.current.SetSelectedGameObject(pauseBtn);
                 break;
             case Screens.configScreen:
                 configScreen.SetActive(true);
-                EventSystem.current.SetSelectedGameObject(gameBtn);
+                Cursor.visible = true;
+                EventSystem.current.SetSelectedGameObject(configBtn);
                 break;
             case Screens.creditsScreen:
                 creditsScreen.SetActive(true);
+                Cursor.visible = true;
                 EventSystem.current.SetSelectedGameObject(creditsBtn);
                 break;
         }
@@ -109,4 +113,20 @@ public class MenusController : MonoBehaviour
         if (currentScreen == Screens.pauseScreen) PauseUnpause();
         else SwitchScreen((int)lastScreen);
     }
+    #endregion
+
+    #region UI Management
+    public void SetSpiritsCaught(int spiritNumber)
+    {
+        spiritsCaught[spiritNumber - 1].SetActive(true);
+    }
+
+    public void DesactiveSpiritsCaught()
+    {
+        for (int i = 0; i < spiritsCaught.Length; i++)
+        {
+            spiritsCaught[i].SetActive(false);
+        }
+    }
+    #endregion
 }

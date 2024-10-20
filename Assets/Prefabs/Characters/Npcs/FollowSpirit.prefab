@@ -135,7 +135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95dac6650b9111d44abffeb407d948b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
   fixedSpeed: 7
   rotationSpeed: 0.25
   distanceToPlayer: 3
@@ -178,9 +177,9 @@ TrailRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1950444025
+  m_SortingLayer: 2
+  m_SortingOrder: -1
   m_Time: 1
   m_PreviewTimeScale: 1
   m_Parameters:
