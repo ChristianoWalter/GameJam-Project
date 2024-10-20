@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovementControl : MonoBehaviour
 {
     [Header("Stats")]
-    [SerializeField] protected bool canMove;
+    [SerializeField] public bool canMove;
     [SerializeField] protected float moveSpeed;
     [SerializeField] protected float rotationSpeed;
     protected Vector2 moveDirection;
@@ -27,6 +27,8 @@ public class MovementControl : MonoBehaviour
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, 0), rotationSpeed);
         }
+
+        if (anim != null) anim.SetBool("IsMoving", Mathf.Abs(rb.velocity.x) > 0.01f || Mathf.Abs(rb.velocity.y) > 0.01f);
     }
 
     protected void Movement(float horizontalInput, float verticalInput)

@@ -25,6 +25,7 @@ public class FollowNpcController : MonoBehaviour
 
     private void Start()
     {
+        PlayerController.instance.AddSpirits(gameObject);
         destiny = PlayerController.instance.transform;
         canMove = true;
     }

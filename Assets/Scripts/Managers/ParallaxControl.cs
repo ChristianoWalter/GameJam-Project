@@ -9,7 +9,7 @@ public class ParallaxControl : MonoBehaviour
     Transform cam;
 
     [SerializeField] Vector2 parallaxEffect;
-    [SerializeField] bool repeat = true;
+    [SerializeField] bool repeat;
 
     // Start is called before the first frame update
     void Start()
