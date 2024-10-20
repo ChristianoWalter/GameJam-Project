@@ -34,7 +34,7 @@
 using System;
 using UnityEngine;
 
-class Debug : MonoBehaviour
+class FMOD_Tutorial : MonoBehaviour
 {
     //--------------------------------------------------------------------
     // 1: Using the EventReference type will present the designer with

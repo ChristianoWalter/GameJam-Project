@@ -10,10 +10,52 @@ public class PlayerController : MovementControl
     [Header("Player elements")]
     public List<GameObject> spiritsList = new List<GameObject>();
 
+    [Header("Sound Effects")]
+    [SerializeField] private FMODUnity.EventReference onIsSwimming;
+    private FMOD.Studio.EventInstance swimmingSfx;
+    private bool isLooping;
+
     private void Awake()
     {
         instance = this;
     }
+
+    protected override void Start()
+    {
+        base.Start();
+        isLooping = false;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (isMoving && !isLooping) // Movement Control field
+        {
+            isLooping = true;
+            swimmingSfx = FMODUnity.RuntimeManager.CreateInstance(onIsSwimming);
+            swimmingSfx.start();
+            // FMODUnity.RuntimeManager.PlayOneShot(onIsSwimming);
+        }
+        else if (!isMoving)
+        {
+            isLooping = false;
+            swimmingSfx.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            swimmingSfx.release();
+        }
+    }
+
+    /*
+
+    void OnDestroy()
+    {
+        FMOD.Studio.Bus playerBus = FMODUnity.RuntimeManager.GetBus("bus:/event");
+        playerBus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
+
+        swimmingSfx.release();
+    }
+
+    */
 
     public void ClearSpirits()
     {
