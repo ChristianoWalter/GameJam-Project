@@ -10,9 +10,11 @@ public class GameManager : MonoBehaviour
     [Header("Game Instances")]
     [SerializeField] Transform[] spawnPoints;
     [SerializeField] GameObject[] backgrounds;
+    [SerializeField] GameObject firstBg;
     [SerializeField] GameObject player;
     int currentLevel;
     [HideInInspector] public bool gameStarted;
+    [HideInInspector] public bool canPause;
     [HideInInspector] public bool transitioning;
 
     //[Header("Game Levels Objects")]
@@ -31,6 +33,9 @@ public class GameManager : MonoBehaviour
         }
         gameStarted = false;
         currentLevel = 0;
+    }
+    private void Start()
+    {
         PlayerController.instance.canInput = false;
     }
 
@@ -40,9 +45,8 @@ public class GameManager : MonoBehaviour
         {
             if (Input.anyKeyDown)
             {
-                gameStarted = true;
                 startScreenAnim.SetTrigger("StartGame");
-                //StartCoroutine(StartGame());
+                PlayerController.instance.anim.SetTrigger("StartGame");
             }
         }
     }
@@ -50,23 +54,28 @@ public class GameManager : MonoBehaviour
     #region Level Transition Management
     IEnumerator LevelTransition()
     {
+        canPause = false;
         PlayerController.instance.canMove = false;
+        PlayerController.instance.rb.velocity = Vector2.zero;
         transitionAnim.SetTrigger("FadeIn");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.5f);
         backgrounds[currentLevel].SetActive(false);
+        PlayerController.instance.ClearSpirits();
+        InterfaceController.instance.DesactiveSpiritsCaught();
         currentLevel++;
         player.transform.position = spawnPoints[currentLevel].position;
         backgrounds[currentLevel].SetActive(true);
         yield return new WaitForSeconds(1);
         transitionAnim.SetTrigger("FadeOut");
         PlayerController.instance.canMove = true;
+        canPause = true;
     }
 
     public void CheckSpirits(int spiritsCount)
     {
         if (spiritsCount == 3)
         {
-            if(currentLevel < 2) StartCoroutine(LevelTransition());
+            if(currentLevel < 1) StartCoroutine(LevelTransition());
             else StartCoroutine(FinishGame());
         }
     }
@@ -76,13 +85,35 @@ public class GameManager : MonoBehaviour
     IEnumerator FinishGame()
     {
         transitionAnim.SetTrigger("FadeIn");
-        yield return new WaitForSeconds(1);
-        InterfaceController.instance.SwitchScreen((int)InterfaceController.Screens.configScreen);
+
+        PlayerController.instance.canMove = false;
+        PlayerController.instance.rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(1.5f);
+        PlayerController.instance.ClearSpirits();
+        yield return new WaitForSeconds(.5f);
+        transitionAnim.SetTrigger("FadeOut");
+
+        InterfaceController.instance.SwitchScreen((int)InterfaceController.Screens.creditsScreen);
     }
 
-    IEnumerator StartGame()
+    public void StartGame()
     {
-        yield return new WaitForSeconds(5);
-        PlayerController.instance.canInput = true;
+        StartCoroutine(StartingGame());
+        IEnumerator StartingGame()
+        {
+            transitionAnim.SetTrigger("FadeIn");
+            yield return new WaitForSeconds(1);
+            PlayerController.instance.canMove = false;
+            PlayerController.instance.rb.velocity = Vector2.zero;
+            PlayerController.instance.canInput = true;
+            firstBg.SetActive(false);
+            player.transform.position = spawnPoints[currentLevel].position;
+            backgrounds[currentLevel].SetActive(true);
+            InterfaceController.instance.SwitchScreen((int)InterfaceController.Screens.gameScreen);
+            yield return new WaitForSeconds(1);
+            transitionAnim.SetTrigger("FadeOut");
+            gameStarted = true;
+            PlayerController.instance.canMove = true;
+        }
     }
 }

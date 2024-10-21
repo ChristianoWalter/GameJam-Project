@@ -41,6 +41,7 @@ public class InterfaceController : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        SwitchScreen((int)Screens.menuScreen);
     }
 
     #region Screens Management
@@ -89,18 +90,24 @@ public class InterfaceController : MonoBehaviour
 
     public void PauseUnpause()
     {
-        if (!GameManager.instance.gameStarted) return;
+        if (!GameManager.instance.gameStarted && GameManager.instance.canPause) return;
         if (isPaused)
         {
             SwitchScreen((int)Screens.gameScreen);
-            Time.timeScale = 1f;
+            //Time.timeScale = 1f;
+            PlayerController.instance.canMove = true;
+            PlayerController.instance.canInput = true;
             isInGame = true;
             isPaused = false;
         }
         else
         {
-            SwitchScreen((int)Screens.configScreen);
-            Time.timeScale = 0f;
+            SwitchScreen((int)Screens.pauseScreen);
+            //Time.timeScale = 0f;
+            PlayerController.instance.canMove = false;
+            PlayerController.instance.canInput = false;
+            PlayerController.instance.rb.velocity = Vector2.zero;
+            PlayerController.instance.moveDirection = Vector2.zero;
             isInGame = false;
             isPaused = true;
         }

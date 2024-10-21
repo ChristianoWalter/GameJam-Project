@@ -9,11 +9,11 @@ public class MovementControl : MonoBehaviour
     [SerializeField] protected bool isMoving;
     [SerializeField] protected float moveSpeed;
     [SerializeField] protected float rotationSpeed;
-    protected Vector2 moveDirection;
+    [HideInInspector] public Vector2 moveDirection;
 
     [Header("Components")]
-    [SerializeField] protected Animator anim;
-    [SerializeField] protected Rigidbody2D rb;
+    public Animator anim;
+    public Rigidbody2D rb;
 
     protected virtual void Start()
     {

@@ -8,10 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2254913430191861724, guid: 6965b0b2260f032468e188320cb262f0, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: eba2ffe656ef7f743989adbd8d49fb76, type: 2}
     - target: {fileID: 2715386385678012778, guid: 6965b0b2260f032468e188320cb262f0, type: 3}
       propertyPath: m_Name
       value: Spirit2 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4679600352858926295, guid: 6965b0b2260f032468e188320cb262f0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9e447261f00bdda4e8a19a86a3bd2b7b, type: 3}
     - target: {fileID: 6959564938147334449, guid: 6965b0b2260f032468e188320cb262f0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.908

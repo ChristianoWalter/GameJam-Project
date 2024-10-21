@@ -10,6 +10,8 @@ public class PlayerController : MovementControl
     [Header("Player elements")]
     public List<GameObject> spiritsList = new List<GameObject>();
     [HideInInspector] public bool canInput;
+    [SerializeField] GameObject appearence;
+    [SerializeField] GameObject trail;
 
     [Header("Sound Effects")]
     [SerializeField] private FMODUnity.EventReference onIsSwimming;
@@ -19,7 +21,7 @@ public class PlayerController : MovementControl
     private void Awake()
     {
         instance = this;
-        canInput = true;
+        //canInput = true;
     }
 
     protected override void Start()
@@ -59,6 +61,21 @@ public class PlayerController : MovementControl
 
     */
 
+    public void StartGame()
+    {
+        appearence.SetActive(true);
+        StartCoroutine(StartingRoutine());
+        IEnumerator StartingRoutine()
+        {
+            GameManager.instance.StartGame();
+            moveDirection.y = 2; 
+            yield return new WaitForSeconds(1f);
+            trail.SetActive(true);
+            moveDirection.y = 0;
+            anim.SetTrigger("EntranceFinish");
+        }
+    }
+
     public void ClearSpirits()
     {
         for (int i = 0; i < spiritsList.Count; i++)
@@ -71,8 +88,11 @@ public class PlayerController : MovementControl
     public void AddSpirits(GameObject _spirits)
     {
         spiritsList.Add(_spirits);
+        GameManager.instance.CheckSpirits(spiritsList.Count);
         InterfaceController.instance.SetSpiritsCaught(spiritsList.Count);
     }
+
+    
 
     #region Input Methods
     public void MovementInput(InputAction.CallbackContext value)
