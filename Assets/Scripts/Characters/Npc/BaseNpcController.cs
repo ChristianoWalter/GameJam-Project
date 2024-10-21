@@ -109,6 +109,7 @@ public class BaseNpcController : MonoBehaviour
                 if (!destroyObject)
                 {
                     destroyObject = true;
+                    // catch fish
                     Instantiate(followSpirit, transform.position, Quaternion.identity);
                     Destroy(mainGroup);
                 }
