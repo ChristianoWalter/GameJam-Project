@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        canPause = false;
         PlayerController.instance.canInput = false;
     }
 
@@ -94,6 +95,7 @@ public class GameManager : MonoBehaviour
         transitionAnim.SetTrigger("FadeIn");
 
         PlayerController.instance.canMove = false;
+        canPause = false;
         PlayerController.instance.rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(1.5f);
         PlayerController.instance.ClearSpirits();
@@ -120,7 +122,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(1);
             transitionAnim.SetTrigger("FadeOut");
             // bgmusic1
-            gameStarted = true;
+            canPause = true;
             PlayerController.instance.canMove = true;
         }
     }
