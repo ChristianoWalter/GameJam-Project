@@ -4646,21 +4646,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4373911038802157046, guid: 2882c04b4543bd341b600515113544c4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4590717104742766004, guid: 2882c04b4543bd341b600515113544c4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4590717104742766004, guid: 2882c04b4543bd341b600515113544c4, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4590717104742766004, guid: 2882c04b4543bd341b600515113544c4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 119.379944
       objectReference: {fileID: 0}
     - target: {fileID: 4590717104742766004, guid: 2882c04b4543bd341b600515113544c4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -119.17999
       objectReference: {fileID: 0}
     - target: {fileID: 7574759699953142207, guid: 2882c04b4543bd341b600515113544c4, type: 3}
       propertyPath: m_AnchorMax.y
