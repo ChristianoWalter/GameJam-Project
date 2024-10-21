@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
         {
             if (Input.anyKeyDown)
             {
+                gameStarted = true;
+                // diving_up
                 startScreenAnim.SetTrigger("StartGame");
                 PlayerController.instance.anim.SetTrigger("StartGame");
             }
@@ -67,6 +69,7 @@ public class GameManager : MonoBehaviour
         backgrounds[currentLevel].SetActive(true);
         yield return new WaitForSeconds(1);
         transitionAnim.SetTrigger("FadeOut");
+        // bgmusic2
         PlayerController.instance.canMove = true;
         canPause = true;
     }
@@ -75,7 +78,11 @@ public class GameManager : MonoBehaviour
     {
         if (spiritsCount == 3)
         {
-            if(currentLevel < 1) StartCoroutine(LevelTransition());
+            // last fish
+            if (currentLevel < 1)
+            {
+                StartCoroutine(LevelTransition());
+            }
             else StartCoroutine(FinishGame());
         }
     }
@@ -112,6 +119,7 @@ public class GameManager : MonoBehaviour
             InterfaceController.instance.SwitchScreen((int)InterfaceController.Screens.gameScreen);
             yield return new WaitForSeconds(1);
             transitionAnim.SetTrigger("FadeOut");
+            // bgmusic1
             gameStarted = true;
             PlayerController.instance.canMove = true;
         }
