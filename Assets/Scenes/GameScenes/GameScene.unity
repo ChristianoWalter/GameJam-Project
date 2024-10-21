@@ -694,6 +694,26 @@ PrefabInstance:
       propertyPath: appearence
       value: 
       objectReference: {fileID: 1845504022}
+    - target: {fileID: 2771312059071604782, guid: 28371817f2dc6744e954d1d13ea35eb4, type: 3}
+      propertyPath: onIsSwimming.Path
+      value: event:/SFX/sfx_char_nadando
+      objectReference: {fileID: 0}
+    - target: {fileID: 2771312059071604782, guid: 28371817f2dc6744e954d1d13ea35eb4, type: 3}
+      propertyPath: onIsSwimming.Guid.Data1
+      value: -708538007
+      objectReference: {fileID: 0}
+    - target: {fileID: 2771312059071604782, guid: 28371817f2dc6744e954d1d13ea35eb4, type: 3}
+      propertyPath: onIsSwimming.Guid.Data2
+      value: 1194483116
+      objectReference: {fileID: 0}
+    - target: {fileID: 2771312059071604782, guid: 28371817f2dc6744e954d1d13ea35eb4, type: 3}
+      propertyPath: onIsSwimming.Guid.Data3
+      value: 1109627326
+      objectReference: {fileID: 0}
+    - target: {fileID: 2771312059071604782, guid: 28371817f2dc6744e954d1d13ea35eb4, type: 3}
+      propertyPath: onIsSwimming.Guid.Data4
+      value: 1181861071
+      objectReference: {fileID: 0}
     - target: {fileID: 2885051144101203419, guid: 28371817f2dc6744e954d1d13ea35eb4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4526,6 +4546,86 @@ PrefabInstance:
       propertyPath: firstBg
       value: 
       objectReference: {fileID: 2043215674}
+    - target: {fileID: 3247783293072312713, guid: 2882c04b4543bd341b600515113544c4, type: 3}
+      propertyPath: onDiveUp.Path
+      value: event:/SFX/sfx_char_portal_comeco
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247783293072312713, guid: 2882c04b4543bd341b600515113544c4, type: 3}
+      propertyPath: onLevel1.Path
+      value: event:/Musicas/mus_ceu_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247783293072312713, guid: 2882c04b4543bd341b600515113544c4, type: 3}
+      propertyPath: onLevel2.Path
+      value: event:/Musicas/mus_ceu_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247783293072312713, guid: 2882c04b4543bd341b600515113544c4, type: 3}
+      propertyPath: onLastFish.Path
+      value: event:/SFX/sfx_char_todos_capturados
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247783293072312713, guid: 2882c04b4543bd341b600515113544c4, type: 3}
+      propertyPath: onDiveUp.Guid.Data1
+      value: 1745983499
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247783293072312713, guid: 2882c04b4543bd341b600515113544c4, type: 3}
+      propertyPath: onDiveUp.Guid.Data2
+      value: 1313891960
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247783293072312713, guid: 2882c04b4543bd341b600515113544c4, type: 3}
+      propertyPath: onDiveUp.Guid.Data3
+      value: -1871565658
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247783293072312713, guid: 2882c04b4543bd341b600515113544c4, type: 3}
+      propertyPath: onDiveUp.Guid.Data4
+      value: -1998018576
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247783293072312713, guid: 2882c04b4543bd341b600515113544c4, type: 3}
+      propertyPath: onLevel1.Guid.Data1
+      value: 591313992
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247783293072312713, guid: 2882c04b4543bd341b600515113544c4, type: 3}
+      propertyPath: onLevel1.Guid.Data2
+      value: 1285572697
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247783293072312713, guid: 2882c04b4543bd341b600515113544c4, type: 3}
+      propertyPath: onLevel1.Guid.Data3
+      value: 1239729085
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247783293072312713, guid: 2882c04b4543bd341b600515113544c4, type: 3}
+      propertyPath: onLevel1.Guid.Data4
+      value: 1954635736
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247783293072312713, guid: 2882c04b4543bd341b600515113544c4, type: 3}
+      propertyPath: onLevel2.Guid.Data1
+      value: 458632620
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247783293072312713, guid: 2882c04b4543bd341b600515113544c4, type: 3}
+      propertyPath: onLevel2.Guid.Data2
+      value: 1158465761
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247783293072312713, guid: 2882c04b4543bd341b600515113544c4, type: 3}
+      propertyPath: onLevel2.Guid.Data3
+      value: -225804614
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247783293072312713, guid: 2882c04b4543bd341b600515113544c4, type: 3}
+      propertyPath: onLevel2.Guid.Data4
+      value: -1499276447
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247783293072312713, guid: 2882c04b4543bd341b600515113544c4, type: 3}
+      propertyPath: onLastFish.Guid.Data1
+      value: 422554560
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247783293072312713, guid: 2882c04b4543bd341b600515113544c4, type: 3}
+      propertyPath: onLastFish.Guid.Data2
+      value: 1110322630
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247783293072312713, guid: 2882c04b4543bd341b600515113544c4, type: 3}
+      propertyPath: onLastFish.Guid.Data3
+      value: 305519510
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247783293072312713, guid: 2882c04b4543bd341b600515113544c4, type: 3}
+      propertyPath: onLastFish.Guid.Data4
+      value: -1555184253
+      objectReference: {fileID: 0}
     - target: {fileID: 3247783293072312713, guid: 2882c04b4543bd341b600515113544c4, type: 3}
       propertyPath: backgrounds.Array.data[0]
       value: 

@@ -199,6 +199,13 @@ MonoBehaviour:
   mainGroup: {fileID: 0}
   followSpirit: {fileID: 1497442950104787484, guid: 6192f0021a4570641a3f87175be55757, type: 3}
   anim: {fileID: 2254913430191861724}
+  onCaptured:
+    Guid:
+      Data1: 64219186
+      Data2: 1278921358
+      Data3: 1376853393
+      Data4: 117926797
+    Path: event:/SFX/sfx_char_capturando
 --- !u!1 &5188003011042838205
 GameObject:
   m_ObjectHideFlags: 0

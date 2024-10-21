@@ -30,6 +30,9 @@ public class BaseNpcController : MonoBehaviour
     [SerializeField] GameObject followSpirit;
     [SerializeField] Animator anim;
 
+    [Header("Sound Effects")]
+    [SerializeField] private FMODUnity.EventReference onCaptured;
+
     private void Awake()
     {
         catchInterface.fillAmount = 0;
@@ -109,7 +112,9 @@ public class BaseNpcController : MonoBehaviour
                 if (!destroyObject)
                 {
                     destroyObject = true;
-                    // catch fish
+
+                    FMODUnity.RuntimeManager.PlayOneShot(onCaptured, transform.position);
+
                     Instantiate(followSpirit, transform.position, Quaternion.identity);
                     Destroy(mainGroup);
                 }

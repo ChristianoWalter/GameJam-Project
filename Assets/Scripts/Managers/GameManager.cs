@@ -24,6 +24,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] Animator transitionAnim;
     [SerializeField] Animator startScreenAnim;
 
+    [Header("Sound Effects")]
+    [SerializeField] private FMODUnity.EventReference onLevel1;
+    private FMOD.Studio.EventInstance level1Bgm;
+    [SerializeField] private FMODUnity.EventReference onLevel2;
+    private FMOD.Studio.EventInstance level2Bgm;
+    [SerializeField] private FMODUnity.EventReference onLastFish;
+    // private FMOD.Studio.EventInstance lastFishSfx;
+    [SerializeField] private FMODUnity.EventReference onDiveUp;
+    // private FMOD.Studio.EventInstance diveUpSfx;
+
     private void Awake()
     {
         instance = this;
@@ -47,7 +57,11 @@ public class GameManager : MonoBehaviour
             if (Input.anyKeyDown)
             {
                 gameStarted = true;
-                // diving_up
+
+                FMODUnity.RuntimeManager.PlayOneShot(onDiveUp, transform.position);
+                level1Bgm = FMODUnity.RuntimeManager.CreateInstance(onLevel1);
+                level1Bgm.start();
+
                 startScreenAnim.SetTrigger("StartGame");
                 PlayerController.instance.anim.SetTrigger("StartGame");
             }
@@ -70,7 +84,10 @@ public class GameManager : MonoBehaviour
         backgrounds[currentLevel].SetActive(true);
         yield return new WaitForSeconds(1);
         transitionAnim.SetTrigger("FadeOut");
-        // bgmusic2
+
+        level2Bgm = FMODUnity.RuntimeManager.CreateInstance(onLevel2);
+        level2Bgm.start();
+
         PlayerController.instance.canMove = true;
         canPause = true;
     }
@@ -79,9 +96,13 @@ public class GameManager : MonoBehaviour
     {
         if (spiritsCount == 3)
         {
-            // last fish
+
+            FMODUnity.RuntimeManager.PlayOneShot(onLastFish, transform.position);
+
             if (currentLevel < 1)
             {
+                level1Bgm.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                level1Bgm.release();
                 StartCoroutine(LevelTransition());
             }
             else StartCoroutine(FinishGame());
@@ -121,7 +142,6 @@ public class GameManager : MonoBehaviour
             InterfaceController.instance.SwitchScreen((int)InterfaceController.Screens.gameScreen);
             yield return new WaitForSeconds(1);
             transitionAnim.SetTrigger("FadeOut");
-            // bgmusic1
             canPause = true;
             PlayerController.instance.canMove = true;
         }
