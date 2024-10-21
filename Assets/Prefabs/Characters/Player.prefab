@@ -245,7 +245,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 5521856001470614703}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: f25c393ada82eb047b725dd2cfee0505, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -349,11 +349,12 @@ MonoBehaviour:
   isMoving: 0
   moveSpeed: 8
   rotationSpeed: 0.2
+  moveDirection: {x: 0, y: 0}
   anim: {fileID: 7387578769156300313}
   rb: {fileID: 6110868027908115677}
   spiritsList: []
   canInput: 0
-  appearnce: {fileID: 0}
+  appearence: {fileID: 0}
   trail: {fileID: 1737774972099381243}
   onIsSwimming:
     Guid:
